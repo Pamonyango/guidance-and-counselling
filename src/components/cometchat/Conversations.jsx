@@ -19,23 +19,20 @@ class Conversations extends Component {
     if (
       (_.isEmpty(this.state.conversations) &&
         this.state.conversationsFetched === false) ||
-        (this.props.lastMessageId !== prevProps.lastMessageId)
+      this.props.lastMessageId !== prevProps.lastMessageId
     ) {
       var conversationsRequest = new CometChat.ConversationsRequestBuilder()
         .setLimit(50)
         .build();
 
-        conversationsRequest.fetchNext().then(
-            conversationList => {
-           
-              this.setState({
-                conversations: conversationList,
-                conversationsFetched: true
-              });
-          
+      conversationsRequest.fetchNext().then(
+        conversationList => {
+          this.setState({
+            conversations: conversationList,
+            conversationsFetched: true
+          });
         },
         error => {
-           
           this.setState({
             conversations: [],
             conversationsFetched: true
@@ -46,44 +43,37 @@ class Conversations extends Component {
   }
 
   handleSearchStringChange = e => {
-
     this.setState({ searchString: e.target.value });
 
-    let search_string =  e.target.value;
+    let search_string = e.target.value;
 
     var conversationsRequest = new CometChat.ConversationsRequestBuilder()
-        .setLimit(100)
-        .build();
+      .setLimit(100)
+      .build();
 
-        conversationsRequest.fetchNext().then(
-          
-            conversationList => {
-           
-              let keys_to_remove = [];
+    conversationsRequest.fetchNext().then(conversationList => {
+      let keys_to_remove = [];
 
-              if(conversationList.length > 0)
-              {
-                _.forEach(conversationList, function(c,k) { 
-                  
-                  if(_.toLower(c.conversationWith.name).indexOf(_.toLower(search_string)) < 0)
-                  {
-                    keys_to_remove = _.concat(keys_to_remove, k);
-                    
-                  }
-                  
-                });
-                
-                _.pullAt(conversationList, keys_to_remove);
+      if (conversationList.length > 0) {
+        _.forEach(conversationList, function(c, k) {
+          if (
+            _.toLower(c.conversationWith.name).indexOf(
+              _.toLower(search_string)
+            ) < 0
+          ) {
+            keys_to_remove = _.concat(keys_to_remove, k);
+          }
+        });
 
-                this.setState({ conversations : conversationList });
+        _.pullAt(conversationList, keys_to_remove);
 
-              }
-        }
-
-      );
+        this.setState({ conversations: conversationList });
+      }
+    });
   };
 
   render() {
+    console.log(this.state.conversations);
     const { conversations, conversationsFetched } = this.state;
 
     const conversations_length = conversations.length;
@@ -97,7 +87,9 @@ class Conversations extends Component {
         );
       } else {
         return (
-          <div className="contact-tab p-2 bg-white">Fetching conversations...</div>
+          <div className="contact-tab p-2 bg-white">
+            Fetching conversations...
+          </div>
         );
       }
     } else {
@@ -133,16 +125,39 @@ class Conversations extends Component {
             {conversations.map(c => (
               <Conversation
                 key={c.conversationId}
-                id={c.conversationWith.uid !== undefined ? c.conversationWith.uid : c.conversationWith.guid !== undefined ? c.conversationWith.guid : ""}
-                name={c.conversationWith.name}
-                avatar={c.conversationWith.avatar !== undefined ? c.conversationWith.avatar : 
-                  c.conversationWith.icon !== undefined ? c.conversationWith.icon : 
-                  c.conversationType === CometChat.RECEIVER_TYPE.GROUP ? defaultGroupIco : defaultUserIco
+                id={
+                  c.conversationWith.uid !== undefined
+                    ? c.conversationWith.uid
+                    : c.conversationWith.guid !== undefined
+                    ? c.conversationWith.guid
+                    : ""
                 }
-                lastMessage={c.lastMessage === undefined ? '...' : c.lastMessage.category === "message" && c.lastMessage.type === "text" ? c.lastMessage.data.text 
-                : c.lastMessage.category === "message" ? c.lastMessage.type
-                : c.lastMessage.category === "action" && c.lastMessage.action !== "deleted" ? c.lastMessage.message
-                : c.lastMessage.category === "action" && c.lastMessage.action === "deleted" ? 'Message deleted' : false }
+                name={c.conversationWith.name}
+                avatar={
+                  c.conversationWith.avatar !== undefined
+                    ? c.conversationWith.avatar
+                    : c.conversationWith.icon !== undefined
+                    ? c.conversationWith.icon
+                    : c.conversationType === CometChat.RECEIVER_TYPE.GROUP
+                    ? defaultGroupIco
+                    : defaultUserIco
+                }
+                lastMessage={
+                  c.lastMessage === undefined
+                    ? "..."
+                    : c.lastMessage.category === "message" &&
+                      c.lastMessage.type === "text"
+                    ? c.lastMessage.data.text
+                    : c.lastMessage.category === "message"
+                    ? c.lastMessage.type
+                    : c.lastMessage.category === "action" &&
+                      c.lastMessage.action !== "deleted"
+                    ? c.lastMessage.message
+                    : c.lastMessage.category === "action" &&
+                      c.lastMessage.action === "deleted"
+                    ? "Message deleted"
+                    : false
+                }
                 handleConversationClick={this.props.handleConversationClick}
                 activeID={this.props.activeID}
                 conversationType={c.conversationType}

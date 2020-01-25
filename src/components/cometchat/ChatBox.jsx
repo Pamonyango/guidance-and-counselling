@@ -39,7 +39,7 @@ class ChatBox extends Component {
     showAskPasswordModal: false,
     protectedGroupAskPasswordGuid: 0,
     onlineUsers: 0,
-    lastMessageId:0,
+    lastMessageId: 0,
     isMobile: window.innerWidth < 768
   };
 
@@ -202,11 +202,9 @@ class ChatBox extends Component {
     CometChat.removeMessageListener(RT_GROUP_MEMBER_ACTIONS);
   }
 
-  handleOnRecentMessageSent = (lastMessageId) => {
-
-    this.setState({lastMessageId});
-
-  } 
+  handleOnRecentMessageSent = lastMessageId => {
+    this.setState({ lastMessageId });
+  };
 
   handleContactClick = uid => {
     if (this.state.activeConversation.uid !== uid) {
@@ -222,12 +220,10 @@ class ChatBox extends Component {
   };
 
   handleConversationClick = (id, conversationType) => {
-    console.log(id)
-    if(conversationType === "user")
-    {
+    console.log(id);
+    if (conversationType === "user") {
       this.handleContactClick(id);
-    }
-    else{
+    } else {
       this.handleGroupClick(id);
     }
   };
@@ -342,9 +338,7 @@ class ChatBox extends Component {
         });
       },
 
-      error => {
-        
-      }
+      error => {}
     );
   };
 
@@ -365,6 +359,7 @@ class ChatBox extends Component {
   };
 
   render() {
+    console.log(this.state.typingIndicatorUIDs);
     let conversation_classes = "conversations px-4";
     let contact_classes = "contacts px-4";
     let blocked_contact_classes = "contacts px-4";
@@ -420,7 +415,6 @@ class ChatBox extends Component {
         );
       }
     } else if (this.state.activeSidebar === 1) {
-      
       contact_sidebar_classes += " active";
       utilities_sidebar_show = this.state.showSidebarUtilitiesC
         ? "contact-utilities-list bg-white"
@@ -440,10 +434,7 @@ class ChatBox extends Component {
         activeTabName = "Users";
         sidebarContactsUtilityLabel = "Blocked Users";
         sidebarContactsUtilityIcon = (
-          <FontAwesomeIcon
-            icon={faUserAltSlash}
-            title="Block/Unblock Users"
-          />
+          <FontAwesomeIcon icon={faUserAltSlash} title="Block/Unblock Users" />
         );
       }
 
@@ -456,18 +447,15 @@ class ChatBox extends Component {
           <span className="">&nbsp; {sidebarContactsUtilityLabel}</span>
         </div>
       );
-    }
-    else
-    {
+    } else {
       conversation_sidebar_classes += " active";
 
       utilities_sidebar_show = this.state.showSidebarUtilitiesC
         ? "contact-utilities-list bg-white"
         : "contact-utilities-list bg-white hidden";
 
-        conversation_classes += " active";
-        activeTabName = "Conversations";
-
+      conversation_classes += " active";
+      activeTabName = "Conversations";
     }
 
     let chatSidebarVisiblity = "";
@@ -652,7 +640,8 @@ class ChatBox extends Component {
             <div
               id="conversation-sidebar"
               className={conversation_sidebar_classes}
-              onClick={e => this.handleTabClick(3)} >
+              onClick={e => this.handleTabClick(3)}
+            >
               <img src={conversationIcon} alt="conversationIcon" />
               <p className="m-0 text-font-grey">Conversations</p>
             </div>
@@ -694,8 +683,7 @@ class ChatBox extends Component {
           handleScreenChangesOnMobile={this.handleScreenChangesOnMobile}
           ownerRights={
             (this.state.activeConversation.owner !== undefined &&
-              this.state.activeConversation.owner ===
-                this.props.user.uid) ||
+              this.state.activeConversation.owner === this.props.user.uid) ||
             this.state.activeConversation.scope === "admin"
               ? true
               : false

@@ -38,7 +38,6 @@ class ChatContainer extends Component {
           console.log("Outgoing call accepted:", call);
           this.setState({ call });
           this.handleStartCall();
-          
         },
         onOutgoingCallRejected: call => {
           if (!_.isEmpty(this.state.call)) {
@@ -163,6 +162,7 @@ class ChatContainer extends Component {
   };
 
   render() {
+ 
     if (this.props.user.authToken === "")
       return (
         <React.Fragment>
@@ -198,7 +198,12 @@ class ChatContainer extends Component {
           //incoming call
           initiatorData = (
             <div className="call-reciever-data d-inline-block mr-3">
-              <img src={caller.avatar === undefined ? defaultUserIco : caller.avatar} alt="caller pic" />
+              <img
+                src={
+                  caller.avatar === undefined ? defaultUserIco : caller.avatar
+                }
+                alt="caller pic"
+              />
               <h4 className="d-inline-block">{caller.name}</h4>
             </div>
           );
@@ -209,7 +214,12 @@ class ChatContainer extends Component {
 
           receiverData = (
             <div className="call-reciever-data d-inline-block mr-3">
-              <img src={callee.avatar === undefined ? defaultUserIco : callee.avatar} alt="callee pic" />
+              <img
+                src={
+                  callee.avatar === undefined ? defaultUserIco : callee.avatar
+                }
+                alt="callee pic"
+              />
               <h4 className="d-inline-block">{callee.name}</h4>
             </div>
           );
@@ -236,14 +246,17 @@ class ChatContainer extends Component {
             "call-notification-panel mt-3 mr-3 px-3 py-1";
           initiatorData = (
             <div className="call-reciever-data d-inline-block mr-3">
-              <img src={caller.avatar === undefined ? defaultUserIco : caller.avatar} alt="caller pic" />
+              <img
+                src={
+                  caller.avatar === undefined ? defaultUserIco : caller.avatar
+                }
+                alt="caller pic"
+              />
               <h4 className="d-inline-block">{caller.name}</h4>
             </div>
           );
         }
       }
-
-      
     }
     if (!isEmpty(this.state.call) && this.state.call.action === "ongoing") {
       callScreenClasses = "";
@@ -256,7 +269,11 @@ class ChatContainer extends Component {
             <Zoom>
               <div className="col-md-12 col-xl-2 col-sm-12 col-xs-12 pl-0 d-none d-sm-block logged-user">
                 <div className=" text-center">
-                  <img className="user-avatar" src={avatar === undefined ? defaultUserIco : avatar} alt="User Avatar" />
+                  <img
+                    className="user-avatar"
+                    src={avatar === undefined ? defaultUserIco : avatar}
+                    alt="User Avatar"
+                  />
                   <h4 className="text-white text-center mt-3">{name}</h4>
                   <p className="text-center">
                     <span className="status status-available mr-2"></span>

@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import cometchatLogo from "../../resources/images/cometchat_white.png";
-import ironman from "../../resources/images/ironman@2x.png";
-import captainamerica from "../../resources/images/captainamerica@2x.png";
-import spiderman from "../../resources/images/spiderman@2x.png";
-import wolverine from "../../resources/images/wolverine@2x.png";
+
 import loader from "../../resources/images/loading1.gif";
 import DemoUser from "./DemoUser";
 
@@ -45,7 +42,7 @@ class LoginForm extends Component {
                 )}
               </button>
             </div>
-              {/* <p className="text-center mt-3 info-text">
+            {/* <p className="text-center mt-3 info-text">
                 Haven't created a user yet? Select one of our default users for
                 testing :
               </p>

@@ -38,7 +38,7 @@ class RenderConversation extends Component {
       handleMessageEdit,
       scrollToBottom
     } = this.props;
-
+    console.log(this.props.avatar);
     if (msgCategory === "incoming") {
       return (
         <RenderIcomingMsg
@@ -184,11 +184,10 @@ function RenderIcomingMsg({
     if (msg === undefined || msg === "") {
       messageContent = (
         <div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
-        Message deleted
-      </div> );
-    }
-    else
-    {
+          Message deleted
+        </div>
+      );
+    } else {
       messageContent = (
         <div className="msg-media-file ml-2 mr-1">
           <a
@@ -224,12 +223,12 @@ function RenderIcomingMsg({
     }
   } else if (msgType === CometChat.MESSAGE_TYPE.AUDIO) {
     if (msg === undefined || msg === "") {
-      messageContent = (<div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
-        Message deleted
-      </div>);
-    }
-    else
-    {
+      messageContent = (
+        <div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
+          Message deleted
+        </div>
+      );
+    } else {
       messageContent = (
         <div className="msg-media-img ml-2 mr-1">
           <audio controls title="Play audio message">
@@ -241,12 +240,12 @@ function RenderIcomingMsg({
     }
   } else if (msgType === CometChat.MESSAGE_TYPE.FILE) {
     if (msg === undefined || msg === "") {
-      messageContent = (<div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
-        Message deleted
-      </div> );
-    }
-    else
-    {
+      messageContent = (
+        <div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
+          Message deleted
+        </div>
+      );
+    } else {
       messageContent = (
         <div className="msg-media-file ml-2 mr-1">
           <a
@@ -280,8 +279,7 @@ function RenderIcomingMsg({
         </div>
       );
     }
-  }
-  else if (msgType === 'location') {
+  } else if (msgType === "location") {
     messageContent = (
       <div className="msg-media-img location-marker ml-2 mr-1">
         <a
@@ -290,11 +288,13 @@ function RenderIcomingMsg({
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={googleMapIco} alt="location message" onLoad={() => scrollToBottom()} />
+          <img
+            src={googleMapIco}
+            alt="location message"
+            onLoad={() => scrollToBottom()}
+          />
           <div className="click-to-view-media">
-            <div className="click-to-view-text">
-             
-            </div>
+            <div className="click-to-view-text"></div>
           </div>
         </a>
       </div>
@@ -498,8 +498,14 @@ function RenderOutgoingMsg({
             <div className="attachment-file-msg px-3 py-3">
               <FontAwesomeIcon icon={faFileAlt} />
               <div className="attachment-data">
-                <div>{attachmentData !== undefined ? attachmentData.fileName : ""}</div>
-                <small>{formatFileSize(attachmentData !== undefined ? attachmentData.fileSize : "")}</small>
+                <div>
+                  {attachmentData !== undefined ? attachmentData.fileName : ""}
+                </div>
+                <small>
+                  {formatFileSize(
+                    attachmentData !== undefined ? attachmentData.fileSize : ""
+                  )}
+                </small>
               </div>
             </div>
             <div className="click-to-view-media">
@@ -512,8 +518,7 @@ function RenderOutgoingMsg({
         </div>
       );
     }
-  }
-  else if (msgType === 'location') {
+  } else if (msgType === "location") {
     if (msg === undefined || msg === "") {
       messageContent = (
         <div className="msg-bubble msg-bubble-deleted-msg ml-2 mr-1">
@@ -534,10 +539,14 @@ function RenderOutgoingMsg({
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img width="170px" src={googleMapIco} alt="location message" onLoad={() => scrollToBottom()} />
+            <img
+              width="170px"
+              src={googleMapIco}
+              alt="location message"
+              onLoad={() => scrollToBottom()}
+            />
             <div className="click-to-view-media">
-              <div className="click-to-view-text">
-              </div>
+              <div className="click-to-view-text"></div>
             </div>
           </a>
         </div>
