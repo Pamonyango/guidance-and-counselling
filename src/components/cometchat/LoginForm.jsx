@@ -16,7 +16,8 @@ class LoginForm extends Component {
     return (
       <React.Fragment>
         <div className="cc-logo">
-          <img src={cometchatLogo} alt="cometchat logo" />
+          <p className="lions-logo">LIONS SCHOOL</p>
+          {/* <img src={cometchatLogo} alt="cometchat logo" /> */}
         </div>
         <div className="border-0 login-form-box bg-white px-5 py-5 col-lg-6 col-sm-12 col-md-9 col-xs-12">
           <form className="">
@@ -44,40 +45,40 @@ class LoginForm extends Component {
                 )}
               </button>
             </div>
-            <p className="text-center mt-3 info-text">
-              Haven't created a user yet? Select one of our default users for
-              testing :
-            </p>
-            <div>
-              <DemoUser
-                name="IronMan"
-                avatar={ironman}
-                uid="superhero1"
-                margin="mr-2"
-                handleDemoLogin={this.props.handleDemoLogin}
-              />
-              <DemoUser
-                name="CaptainAmerica"
-                avatar={captainamerica}
-                uid="superhero2"
-                margin=""
-                handleDemoLogin={this.props.handleDemoLogin}
-              />
-              <DemoUser
-                name="SpiderMan"
-                avatar={spiderman}
-                uid="superhero3"
-                margin="mr-2"
-                handleDemoLogin={this.props.handleDemoLogin}
-              />
-              <DemoUser
-                name="Wolverine"
-                avatar={wolverine}
-                uid="superhero4"
-                margin=""
-                handleDemoLogin={this.props.handleDemoLogin}
-              />
-            </div>
+              {/* <p className="text-center mt-3 info-text">
+                Haven't created a user yet? Select one of our default users for
+                testing :
+              </p>
+              <div>
+                <DemoUser
+                  name="IronMan"
+                  avatar={ironman}
+                  uid="superhero1"
+                  margin="mr-2"
+                  handleDemoLogin={this.props.handleDemoLogin}
+                />
+                <DemoUser
+                  name="CaptainAmerica"
+                  avatar={captainamerica}
+                  uid="superhero2"
+                  margin=""
+                  handleDemoLogin={this.props.handleDemoLogin}
+                />
+                <DemoUser
+                  name="SpiderMan"
+                  avatar={spiderman}
+                  uid="superhero3"
+                  margin="mr-2"
+                  handleDemoLogin={this.props.handleDemoLogin}
+                />
+                <DemoUser
+                  name="Wolverine"
+                  avatar={wolverine}
+                  uid="superhero4"
+                  margin=""
+                  handleDemoLogin={this.props.handleDemoLogin}
+                />
+              </div> */}
           </form>
         </div>
       </React.Fragment>

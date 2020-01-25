@@ -2,9 +2,9 @@
 /* 
     APP CONSTANTS
 */
-export const CC_APP_ID = "XXXXXXXXXXXX"; //Get your APP ID from dashboard and replace
-export const CC_API_KEY = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"; //Get your APP ID from dashboard and replace
-export const CC_API_REGION = "XX";  //Get your APP REGION from dashboard and replace
+export const CC_APP_ID = "134985dcd879b5d"; //Get your APP ID from dashboard and replace
+export const CC_API_KEY = "098c03adf9608e4e4bdcafa9948c67a08e950d3b"; //Get your APP ID from dashboard and replace
+export const CC_API_REGION = "eu"; //Get your APP REGION from dashboard and replace
 
 /* 
     LISTENER CONSTANTS
@@ -26,4 +26,4 @@ export const MESSAGE_TYPE_MEDIA = "1";
 export const MESSAGE_TYPE_IMAGE = "2";
 export const MESSAGE_TYPE_VIDEO = "3";
 export const MESSAGE_TYPE_AUDIO = "4";
-export const MESSAGE_TYPE_FILE  = "5";
+export const MESSAGE_TYPE_FILE = "5";
